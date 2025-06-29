@@ -1,0 +1,38 @@
+[
+{
+  "directory": "/data/AI-Chat-Server/build",
+  "command": "/usr/bin/g++  -I/data/AI-Chat-Server/build/../inc -I/usr/include/mysql-cppconn-8 -Wall -Wextra -g -O0 -std=gnu++11 -o CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/MysqlMgr.cpp.o -c /data/AI-Chat-Server/src/MysqlMgr.cpp",
+  "file": "/data/AI-Chat-Server/src/MysqlMgr.cpp",
+  "output": "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/MysqlMgr.cpp.o"
+},
+{
+  "directory": "/data/AI-Chat-Server/build",
+  "command": "/usr/bin/g++  -I/data/AI-Chat-Server/build/../inc -I/usr/include/mysql-cppconn-8 -Wall -Wextra -g -O0 -std=gnu++11 -o CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/chatbot.cpp.o -c /data/AI-Chat-Server/src/chatbot.cpp",
+  "file": "/data/AI-Chat-Server/src/chatbot.cpp",
+  "output": "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/chatbot.cpp.o"
+},
+{
+  "directory": "/data/AI-Chat-Server/build",
+  "command": "/usr/bin/g++  -I/data/AI-Chat-Server/build/../inc -I/usr/include/mysql-cppconn-8 -Wall -Wextra -g -O0 -std=gnu++11 -o CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/http_conn.cpp.o -c /data/AI-Chat-Server/src/http_conn.cpp",
+  "file": "/data/AI-Chat-Server/src/http_conn.cpp",
+  "output": "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/http_conn.cpp.o"
+},
+{
+  "directory": "/data/AI-Chat-Server/build",
+  "command": "/usr/bin/g++  -I/data/AI-Chat-Server/build/../inc -I/usr/include/mysql-cppconn-8 -Wall -Wextra -g -O0 -std=gnu++11 -o CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/main.cpp.o -c /data/AI-Chat-Server/src/main.cpp",
+  "file": "/data/AI-Chat-Server/src/main.cpp",
+  "output": "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/main.cpp.o"
+},
+{
+  "directory": "/data/AI-Chat-Server/build",
+  "command": "/usr/bin/g++  -I/data/AI-Chat-Server/build/../inc -I/usr/include/mysql-cppconn-8 -Wall -Wextra -g -O0 -std=gnu++11 -o CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/timer.cpp.o -c /data/AI-Chat-Server/src/timer.cpp",
+  "file": "/data/AI-Chat-Server/src/timer.cpp",
+  "output": "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/timer.cpp.o"
+},
+{
+  "directory": "/data/AI-Chat-Server/build",
+  "command": "/usr/bin/g++  -I/data/AI-Chat-Server/build/../inc -I/usr/include/mysql-cppconn-8 -Wall -Wextra -g -O0 -std=gnu++11 -o CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/webserver.cpp.o -c /data/AI-Chat-Server/src/webserver.cpp",
+  "file": "/data/AI-Chat-Server/src/webserver.cpp",
+  "output": "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/webserver.cpp.o"
+}
+]
