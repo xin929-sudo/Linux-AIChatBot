@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>用户登录注册</title>
+    <title>登录聊天系统</title>
     <style>
         * {
             margin: 0;
@@ -12,52 +12,45 @@
         }
 
         body {
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
             width: 100%;
-            max-width: 400px;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease;
+            max-width: 900px;
+            min-height: 600px;
         }
 
-        .container:hover {
-            transform: translateY(-5px);
-        }
-
-        .logo {
+        /* 登录界面样式 */
+        .login-page {
+            padding: 60px 40px;
             text-align: center;
-            margin-bottom: 30px;
+            display: block;
         }
 
-        .logo h1 {
-            color: #333;
+        .login-page.hidden {
+            display: none;
+        }
+
+        .login-title {
             font-size: 2.5em;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .logo p {
-            color: #666;
-            font-size: 1em;
+            color: #333;
+            margin-bottom: 40px;
+            font-weight: 300;
         }
 
         .form-group {
             margin-bottom: 25px;
-            position: relative;
+            text-align: left;
         }
 
         .form-group label {
@@ -65,208 +58,495 @@
             margin-bottom: 8px;
             color: #555;
             font-weight: 500;
-            font-size: 1em;
         }
 
         .form-group input {
             width: 100%;
             padding: 15px;
             border: 2px solid #e1e5e9;
-            border-radius: 12px;
-            font-size: 1em;
-            transition: all 0.3s ease;
-            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
         }
 
         .form-group input:focus {
             outline: none;
             border-color: #667eea;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
-        .password-toggle {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #666;
-            font-size: 1.2em;
-            user-select: none;
-        }
-
-        .password-toggle:hover {
-            color: #667eea;
-        }
-
-        .button-group {
+        .btn-group {
             display: flex;
             gap: 15px;
+            justify-content: center;
             margin-top: 30px;
         }
 
         .btn {
-            flex: 1;
-            padding: 15px;
+            padding: 15px 30px;
             border: none;
-            border-radius: 12px;
-            font-size: 1em;
+            border-radius: 8px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            min-width: 120px;
         }
 
-        .btn-login {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
         }
 
-        .btn-login:hover {
-            background: linear-gradient(45deg, #5a6fd8, #6a4190);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #e1e5e9;
         }
 
-        .btn-register {
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* 聊天界面样式 */
+        .chat-page {
+            display: none;
+            height: 600px;
+            flex-direction: column;
+        }
+
+        .chat-page.active {
+            display: flex;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-title {
+            font-size: 1.5em;
+            font-weight: 300;
+        }
+
+        .gpt-selector {
+            display: flex;
+            gap: 10px;
+        }
+
+        .gpt-btn {
+            padding: 8px 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: transparent;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .gpt-btn.active {
             background: white;
             color: #667eea;
-            border: 2px solid #667eea;
         }
 
-        .btn-register:hover {
-            background: #667eea;
+        .gpt-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .gpt-btn.active:hover {
+            background: white;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .message-item {
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            max-width: 80%;
+            word-wrap: break-word;
+            line-height: 1.5;
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            margin-left: auto;
+            text-align: right;
         }
 
-        .form-footer {
-            text-align: center;
-            margin-top: 25px;
-            padding-top: 20px;
+        .bot-message {
+            background: white;
+            color: #333;
+            border: 1px solid #e1e5e9;
+            margin-right: auto;
+        }
+
+        .chat-input {
+            padding: 20px;
+            background: white;
             border-top: 1px solid #e1e5e9;
+            display: flex;
+            gap: 15px;
         }
 
-        .form-footer a {
-            color: #667eea;
-            text-decoration: none;
-            font-size: 0.9em;
+        .chat-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
         }
 
-        .form-footer a:hover {
-            text-decoration: underline;
+        .chat-input input:focus {
+            border-color: #667eea;
         }
 
-        @media (max-width: 480px) {
-            .container {
-                margin: 20px;
-                padding: 30px 25px;
-            }
-            
-            .button-group {
-                flex-direction: column;
-            }
+        .send-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="logo">
-            <h1>欢迎</h1>
-            <p>请登录或注册您的账户</p>
+        <!-- 登录页面 -->
+        <div class="login-page" id="loginPage">
+            <h1 class="login-title">智能聊天系统</h1>
+            <form id="authForm">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" onclick="login()">登录</button>
+                    <button type="button" class="btn btn-secondary" onclick="register()">注册</button>
+                </div>
+            </form>
+            <div id="authMessage" class="message" style="display: none;"></div>
         </div>
 
-        <form id="authForm">
-            <div class="form-group">
-                <label for="username">用户名</label>
-                <input type="text" id="username" name="username" placeholder="请输入用户名">
+        <!-- 聊天页面 -->
+        <div class="chat-page" id="chatPage">
+            <div class="chat-header">
+                <h2 class="chat-title">智能聊天助手</h2>
+                <div class="gpt-selector">
+                    <button class="gpt-btn active" data-model="gpt1" onclick="selectGPT('gpt1')">GPT-1</button>
+                    <button class="gpt-btn" data-model="gpt2" onclick="selectGPT('gpt2')">GPT-2</button>
+                    <button class="gpt-btn" data-model="gpt3" onclick="selectGPT('gpt3')">GPT-3</button>
+                </div>
+                <button class="logout-btn" onclick="logout()">退出登录</button>
             </div>
-
-            <div class="form-group">
-                <label for="password">密码</label>
-                <input type="password" id="password" name="password" placeholder="请输入密码">
-                <span class="password-toggle" onclick="togglePassword()">👁️</span>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message-item bot-message">
+                    欢迎使用智能聊天系统！请选择您想要使用的GPT模型，然后开始对话。
+                </div>
             </div>
-
-            <div class="button-group">
-                <button type="button" class="btn btn-login" id="loginBtn" onclick="handleLogin()">登录</button>
-                <button type="button" class="btn btn-register" id="registerBtn" onclick="handleRegister()">注册</button>
+            <div class="chat-input">
+                <input type="text" id="messageInput" placeholder="输入您的消息..." onkeypress="handleKeyPress(event)">
+                <button class="send-btn" onclick="sendMessage()">发送</button>
             </div>
-        </form>
-
-        <div class="form-footer">
-            <a href="#" id="forgotPassword">忘记密码？</a>
         </div>
     </div>
 
     <script>
-        // 切换密码显示/隐藏
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const toggleIcon = document.querySelector('.password-toggle');
+        let currentGPT = 'gpt1';
+        let isLoading = false;
+        let currentUser = '';
+
+        // 登录功能
+        async function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
             
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                toggleIcon.textContent = '🙈';
-            } else {
-                passwordInput.type = 'password';
-                toggleIcon.textContent = '👁️';
+            if (!username || !password) {
+                showMessage('请输入用户名和密码', 'error');
+                return;
+            }
+
+            const data = {
+                "username": username,
+                "password": password
+            };
+
+            try {
+                showMessage('登录中...', 'success');
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                
+                if (result.success === 1) {
+                    currentUser = username; // 保存用户名
+                    showMessage(`登录成功！欢迎 ${result.name}`, 'success');
+                    setTimeout(() => {
+                        document.getElementById('loginPage').classList.add('hidden');
+                        document.getElementById('chatPage').classList.add('active');
+                    }, 1000);
+                } else {
+                    showMessage('登录失败，请检查用户名和密码', 'error');
+                }
+            } catch (error) {
+                console.error('登录请求失败:', error);
+                showMessage('网络错误，请稍后重试', 'error');
             }
         }
 
-        // 处理登录请求
-        function handleLogin() {
+        // 注册功能
+        async function register() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            // 发送登录请求
-            fetch('/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    username: username,
-                    password: password
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('登录响应:', data);
-                // 在这里处理服务器返回的登录结果
-            })
-            .catch(error => {
-                console.error('登录错误:', error);
+            if (!username || !password) {
+                showMessage('请输入用户名和密码', 'error');
+                return;
+            }
+
+            const data = {
+                "username": username,
+                "password": password
+            };
+
+            try {
+                showMessage('注册中...', 'success');
+                const response = await fetch('/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                
+                if (result.success === 1) {
+                    showMessage(`注册成功！用户 ${result.name} 已创建，请登录`, 'success');
+                    document.getElementById('username').value = '';
+                    document.getElementById('password').value = '';
+                } else {
+                    showMessage('注册失败，用户名可能已存在', 'error');
+                }
+            } catch (error) {
+                console.error('注册请求失败:', error);
+                showMessage('网络错误，请稍后重试', 'error');
+            }
+        }
+
+        // 显示消息
+        function showMessage(message, type) {
+            const messageDiv = document.getElementById('authMessage');
+            messageDiv.textContent = message;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'block';
+            
+            if (type === 'success' && message !== '登录中...' && message !== '注册中...') {
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        // 选择GPT模型
+        function selectGPT(model) {
+            currentGPT = model;
+            
+            // 更新按钮状态
+            document.querySelectorAll('.gpt-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-model="${model}"]`).classList.add('active');
+            
+            // 添加系统消息
+            addMessage(`已切换到 ${model.toUpperCase()} 模型`, 'bot');
+        }
+
+        // 发送消息
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            const username = document.getElementById('username').value;
+            
+            if (!message || isLoading) return;
+            
+            // 添加用户消息
+            addMessage(message, 'user');
+            input.value = '';
+            
+            // 显示加载状态
+            isLoading = true;
+            const loadingMessage = addMessage('正在思考中...', 'bot');
+            
+            try {
+                const data = {
+                    "username": username,
+                    "message": message,
+                    "modle": getModelName(currentGPT)
+                };
+                
+                const response = await fetch('/send-message', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                // 移除加载消息
+                loadingMessage.remove();
+                
+                if (result.message) {
+                    // 逐行显示消息
+                    displayMessageByLines(result.message);
+                } else {
+                    addMessage('抱歉，我现在无法回复您的消息。', 'bot');
+                }
+            } catch (error) {
+                console.error('发送消息失败:', error);
+                loadingMessage.remove();
+                addMessage('网络错误，请稍后重试。', 'bot');
+            } finally {
+                isLoading = false;
+            }
+        }
+
+        // 获取模型名称
+        function getModelName(gptType) {
+            // 目前所有GPT选项都使用相同的模型，后续可以修改为不同模型
+            return 'gpt-3.5-turbo';
+        }
+
+        // 逐行显示消息
+        function displayMessageByLines(message) {
+            const lines = message.split('\n');
+            const messageElement = addMessage('', 'bot');
+            
+            lines.forEach((line, index) => {
+                setTimeout(() => {
+                    if (index === 0) {
+                        messageElement.textContent = line;
+                    } else {
+                        messageElement.textContent += '\n' + line;
+                    }
+                    // 滚动到底部
+                    const chatMessages = document.getElementById('chatMessages');
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, index * 500); // 每行延迟500ms显示
             });
         }
 
-        // 处理注册请求
-        function handleRegister() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+        // 添加消息到聊天界面
+        function addMessage(message, type) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message-item ${type}-message`;
+            messageDiv.textContent = message;
             
-            // 发送注册请求
-            fetch('/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    username: username,
-                    password: password
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('注册响应:', data);
-                // 在这里处理服务器返回的注册结果
-            })
-            .catch(error => {
-                console.error('注册错误:', error);
-            });
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            return messageDiv;
+        }
+
+        // 处理回车键发送
+        function handleKeyPress(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+
+        // 退出登录
+        function logout() {
+            document.getElementById('loginPage').classList.remove('hidden');
+            document.getElementById('chatPage').classList.remove('active');
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('chatMessages').innerHTML = `
+                <div class="message-item bot-message">
+                    欢迎使用智能聊天系统！请选择您想要使用的GPT模型，然后开始对话。
+                </div>
+            `;
         }
     </script>
 </body>
