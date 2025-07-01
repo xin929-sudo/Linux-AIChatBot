@@ -19,6 +19,12 @@
 },
 {
   "directory": "/data/AI-Chat-Server/build",
+  "command": "/usr/bin/g++  -I/data/AI-Chat-Server/build/../inc -I/usr/include/mysql-cppconn-8 -Wall -Wextra -g -O0 -std=gnu++11 -o CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.o -c /data/AI-Chat-Server/src/log.cpp",
+  "file": "/data/AI-Chat-Server/src/log.cpp",
+  "output": "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.o"
+},
+{
+  "directory": "/data/AI-Chat-Server/build",
   "command": "/usr/bin/g++  -I/data/AI-Chat-Server/build/../inc -I/usr/include/mysql-cppconn-8 -Wall -Wextra -g -O0 -std=gnu++11 -o CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/main.cpp.o -c /data/AI-Chat-Server/src/main.cpp",
   "file": "/data/AI-Chat-Server/src/main.cpp",
   "output": "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/main.cpp.o"

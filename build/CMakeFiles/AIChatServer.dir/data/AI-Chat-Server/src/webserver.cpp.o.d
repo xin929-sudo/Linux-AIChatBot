@@ -316,4 +316,10 @@ CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/webserver.cpp.o: \
  /data/AI-Chat-Server/src/../inc/../inc/Singleton.h \
  /usr/include/c++/7/mutex /usr/include/c++/7/chrono \
  /usr/include/c++/7/ratio /usr/include/c++/7/bits/parse_numbers.h \
- /usr/include/c++/7/bits/std_mutex.h
+ /usr/include/c++/7/bits/std_mutex.h \
+ /data/AI-Chat-Server/src/../inc/log.h \
+ /data/AI-Chat-Server/src/../inc/./blocking_queue.h \
+ /data/AI-Chat-Server/src/../inc/././locker.h /usr/include/c++/7/fstream \
+ /usr/include/x86_64-linux-gnu/c++/7/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/7/bits/c++io.h \
+ /usr/include/c++/7/bits/fstream.tcc

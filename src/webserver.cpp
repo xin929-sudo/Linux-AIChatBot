@@ -1,5 +1,5 @@
 #include "../inc/webserver.h"
-
+#include"../inc/log.h"
 using namespace std;
 
 // 添加信号捕捉
@@ -11,8 +11,8 @@ void addsig(int sig, void( handler )(int)){
     assert( sigaction( sig, &sa, NULL ) != -1 );
 }
 
-webserver::webserver(int port,int TrigMode): 
-port(port),m_TrigMode(TrigMode)
+webserver::webserver(int port,int LOGWrite,int TrigMode): 
+port(port), m_log_write(LOGWrite),m_TrigMode(TrigMode)
 {
     timeout = false;
     stop_server = false;
@@ -43,10 +43,10 @@ port(port),m_TrigMode(TrigMode)
     //     printf("Fail to connect to SQL!");
     //     throw exception();
     // }
-    // if(!InitLoger()){
-    //     printf("Fail to create Loger!");
-    //     throw exception();
-    // }
+    if(!InitLoger()){
+        printf("Fail to create Loger!");
+        throw exception();
+    }
 }
 webserver::~webserver(){
     close( epollfd );
@@ -127,15 +127,15 @@ bool webserver::Inittimer(){
 //     return true;
 // }
 
-// bool webserver::InitLoger(){
-//     // 初始化日志
-//     m_close_log=0;
-//     if (m_log_write == 1)
-//         Log::get_instance()->init("./ServerLog", m_close_log, 2000, 800000, 800);
-//     else
-//         Log::get_instance()->init("./ServerLog", m_close_log, 2000, 800000, 0);
-//     return true;
-// }
+bool webserver::InitLoger(){
+    // 初始化日志
+    m_close_log=0;
+    if (m_log_write == 1)
+        Log::get_instance()->init(".logfile/ServerLog", m_close_log, 2000, 800000, 800);
+    else
+        Log::get_instance()->init(".logfile/ServerLog", m_close_log, 2000, 800000, 0);
+    return true;
+}
 
 void webserver::trig_mode()
 {
@@ -171,11 +171,12 @@ bool webserver::AddClient(){
     socklen_t client_addrlength = sizeof( client_address );
     int connfd = accept( listenfd, ( struct sockaddr* )&client_address, &client_addrlength );
     if (connfd < 0){
-        std::cout << "accept error!" << std::endl;
+        // std::cout << "accept error!" << std::endl;
+        LOG_ERROR("accept error!");
         return false;
     }
     users[connfd].init( connfd, client_address);
-    // LOG_INFO("new connect, fd: %d", connfd);
+    LOG_INFO("new connect, fd: %d", connfd);
 
     //初始化client_data数据
     //创建定时器，设置回调函数和超时时间，绑定用户数据，将定时器添加到链表中
@@ -219,6 +220,7 @@ void webserver::deal_timer(util_timer *timer, int sockfd)
         timer_utils.m_timer_lst.del_timer(timer);
     }
     std::cout << "close fd " <<  users_timer[sockfd].sockfd << std::endl;
+    // LOG_INFO("close fd : %d",users_timer[sockfd].sockfd);
 }
 
 //若有数据传输，则将定时器往后延迟3个单位
@@ -237,8 +239,8 @@ void webserver::start(){
     while(!stop_server){
         int number = epoll_wait(epollfd, events, MAX_EVENT_NUMBER, -1);
         if ((number<0) && errno != EINTR){
-            // LOG_ERROR( "epoll failure\n" );
-            std::cout << "epoll failure " << std::endl;
+            LOG_ERROR( "epoll failure\n" );
+            // std::cout << "epoll failure " << std::endl;
             break;
         }
 
@@ -247,48 +249,48 @@ void webserver::start(){
             if (sockfd == listenfd){
                 // 有客户端连进来
                 if (http_conn::m_user_count>=MAX_FD){
-                    // LOG_WARN("server busy!");
-                    std::cout << "server busy!" << std::endl;
+                    LOG_WARN("server busy!");
+                    // std::cout << "server busy!" << std::endl;
                     continue;
                 }
                 if (!AddClient()){
-                    // LOG_ERROR("Add client fail!");
-                    std::cout << "Add client fail!" << std::endl;
+                    LOG_ERROR("Add client fail!");
+                    // std::cout << "Add client fail!" << std::endl;
                 } 
             }
             else if( events[i].events & ( EPOLLRDHUP | EPOLLHUP | EPOLLERR ) ) {
                 // 对方异常、断开或错误等事件
                 // 服务器关闭连接，移除定时器
-                // LOG_INFO("client closed or some errors happened");
-                std::cout << "client closed or some errors happened" << std::endl;
+                LOG_INFO("client closed or some errors happened");
+                // std::cout << "client closed or some errors happened" << std::endl;
                 users[sockfd].close_conn();
                 util_timer *timer = users_timer[sockfd].timer;
                 timer->cb_func(&users_timer[sockfd]);
                 if(timer) timer_utils.m_timer_lst.del_timer(timer);
-                // LOG_INFO("closed fd %d\n", users_timer[sockfd].sockfd);
-                std::cout << "closed fd " << users_timer[sockfd].sockfd << std::endl;
+                LOG_INFO("closed fd %d\n", users_timer[sockfd].sockfd);
+                // std::cout << "closed fd " << users_timer[sockfd].sockfd << std::endl;
 
             } 
             else if ((sockfd == m_pipefd[0] ) && (events[i].events & EPOLLIN)){ // 定时任务
                 if (!dealwithsignal(timeout, stop_server))
-                    // LOG_ERROR("dealclientdata failure");
-                    std::cout << "dealclientdata failure " << std::endl;
+                    LOG_ERROR("dealclientdata failure");
+                    // std::cout << "dealclientdata failure " << std::endl;
             }
 
             else if((events[i].events & EPOLLIN)) {
                 // 一次性把全部数据读完
                 util_timer *timer = users_timer[sockfd].timer; // 更新对应timer
                 if(users[sockfd].read()) {
-                    // LOG_INFO("deal with the client (%s)\n", inet_ntoa(users[sockfd].get_address()->sin_addr));
-                    std::cout << "deal with the client " << inet_ntoa(users[sockfd].get_address()->sin_addr) << std::endl;
+                    LOG_INFO("deal with the client (%s)\n", inet_ntoa(users[sockfd].get_address()->sin_addr));
+                    // std::cout << "deal with the client " << inet_ntoa(users[sockfd].get_address()->sin_addr) << std::endl;
                     pool->append(users + sockfd);
                     if(timer){
                         adjust_timer(timer);
                     }
                     else deal_timer(timer, sockfd);
                 } else {
-                    // LOG_INFO("read client data failure!");
-                    std::cout << "read client data failure!" << std::endl;
+                    LOG_INFO("read client data failure!");
+                    // std::cout << "read client data failure!" << std::endl;
                     users[sockfd].close_conn();
                 }
 
@@ -298,8 +300,8 @@ void webserver::start(){
                 util_timer *timer = users_timer[sockfd].timer;
                 // 一次性把全部数据写完
                 if( users[sockfd].write() ) {
-                    // LOG_INFO("send data to the client (%s)\n", inet_ntoa(users[sockfd].get_address()->sin_addr));
-                    std::cout << "send data to the client " << inet_ntoa(users[sockfd].get_address()->sin_addr) << std::endl;
+                    LOG_INFO("send data to the client (%s)\n", inet_ntoa(users[sockfd].get_address()->sin_addr));
+                    // std::cout << "send data to the client " << inet_ntoa(users[sockfd].get_address()->sin_addr) << std::endl;
                     if (timer) adjust_timer(timer);
                     else deal_timer(timer, sockfd);
                     

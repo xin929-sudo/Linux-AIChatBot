@@ -1,6 +1,7 @@
 #include "../inc/http_conn.h"
 #include"../inc/MysqlMgr.h"
 #include"../inc/chatbot.h"
+#include"../inc/log.h"
 // 定义HTTP响应的一些状态信息
 const char* ok_200_title = "OK";
 const char* error_400_title = "Bad Request";
@@ -192,6 +193,7 @@ http_conn::HTTP_CODE http_conn::parse_request_line(char* text) {
         // 在参数 str 所指向的字符串中搜索第一次出现字符 c（一个无符号字符）的位置。
         m_url = strchr( m_url, '/' );
     }
+    LOG_INFO("the m_url: %s\n", m_url);
     if ( !m_url || m_url[0] != '/' ) {
         return BAD_REQUEST;
     }
@@ -247,7 +249,7 @@ http_conn::HTTP_CODE http_conn::parse_content( char* text ) {
     {
         if (!strcasecmp(m_url, "/login") || !strcasecmp(m_url, "/register")){
             text[ m_content_length ] = '\0';
-            // LOG_INFO("m_url:%s, text: %s \n", m_url, text);
+            LOG_INFO("m_url:%s, text: %s \n", m_url, text);
             // text = "{\"username\":\"ycx\",\"password\":\"dsdsd\"}";
             
             std::cout << "text :" << text << std::endl;
@@ -288,6 +290,7 @@ http_conn::HTTP_CODE http_conn::process_read() {
     LINE_STATUS line_status = LINE_OK;
     HTTP_CODE ret = NO_REQUEST;
     char* text = 0;
+    LOG_INFO("请求：\n %s \n", m_read_buf);
     while (((m_check_state == CHECK_STATE_CONTENT) && (line_status == LINE_OK))
                 || ((line_status = parse_line()) == LINE_OK)) {
                    
@@ -452,6 +455,7 @@ bool http_conn::write() {
                 modfd( m_epollfd, m_sockfd, EPOLLOUT );
                 return true;
             }
+            LOG_ERROR("%d", errno);
             unmap();
             return false;
         }

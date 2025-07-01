@@ -7,7 +7,9 @@ int main( int argc, char* argv[] ) {
     }
     // 触发组合模式,默认listenfd LT + connfd LT
     int TRIGMode = 1;
-    webserver server(port,TRIGMode);
+     //日志写入方式，默认同步 
+    int LOGWrite = 0;
+    webserver server(port,LOGWrite,TRIGMode);
 
     server.start();
     return 0;

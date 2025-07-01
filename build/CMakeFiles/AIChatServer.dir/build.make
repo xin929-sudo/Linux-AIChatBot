@@ -111,10 +111,24 @@ CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/http_conn.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/http_conn.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /data/AI-Chat-Server/src/http_conn.cpp -o CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/http_conn.cpp.s
 
+CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.o: CMakeFiles/AIChatServer.dir/flags.make
+CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.o: /data/AI-Chat-Server/src/log.cpp
+CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.o: CMakeFiles/AIChatServer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/data/AI-Chat-Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.o -MF CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.o.d -o CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.o -c /data/AI-Chat-Server/src/log.cpp
+
+CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /data/AI-Chat-Server/src/log.cpp > CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.i
+
+CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /data/AI-Chat-Server/src/log.cpp -o CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.s
+
 CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/main.cpp.o: CMakeFiles/AIChatServer.dir/flags.make
 CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/main.cpp.o: /data/AI-Chat-Server/src/main.cpp
 CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/main.cpp.o: CMakeFiles/AIChatServer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/data/AI-Chat-Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/data/AI-Chat-Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/main.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/main.cpp.o -MF CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/main.cpp.o.d -o CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/main.cpp.o -c /data/AI-Chat-Server/src/main.cpp
 
 CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/main.cpp.i: cmake_force
@@ -128,7 +142,7 @@ CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/main.cpp.s: cmake_force
 CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/timer.cpp.o: CMakeFiles/AIChatServer.dir/flags.make
 CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/timer.cpp.o: /data/AI-Chat-Server/src/timer.cpp
 CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/timer.cpp.o: CMakeFiles/AIChatServer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/data/AI-Chat-Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/timer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/data/AI-Chat-Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/timer.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/timer.cpp.o -MF CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/timer.cpp.o.d -o CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/timer.cpp.o -c /data/AI-Chat-Server/src/timer.cpp
 
 CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/timer.cpp.i: cmake_force
@@ -142,7 +156,7 @@ CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/timer.cpp.s: cmake_force
 CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/webserver.cpp.o: CMakeFiles/AIChatServer.dir/flags.make
 CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/webserver.cpp.o: /data/AI-Chat-Server/src/webserver.cpp
 CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/webserver.cpp.o: CMakeFiles/AIChatServer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/data/AI-Chat-Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/webserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/data/AI-Chat-Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/webserver.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/webserver.cpp.o -MF CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/webserver.cpp.o.d -o CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/webserver.cpp.o -c /data/AI-Chat-Server/src/webserver.cpp
 
 CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/webserver.cpp.i: cmake_force
@@ -158,6 +172,7 @@ AIChatServer_OBJECTS = \
 "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/MysqlMgr.cpp.o" \
 "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/chatbot.cpp.o" \
 "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/http_conn.cpp.o" \
+"CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.o" \
 "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/main.cpp.o" \
 "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/timer.cpp.o" \
 "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/webserver.cpp.o"
@@ -168,12 +183,13 @@ AIChatServer_EXTERNAL_OBJECTS =
 AIChatServer: CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/MysqlMgr.cpp.o
 AIChatServer: CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/chatbot.cpp.o
 AIChatServer: CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/http_conn.cpp.o
+AIChatServer: CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.o
 AIChatServer: CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/main.cpp.o
 AIChatServer: CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/timer.cpp.o
 AIChatServer: CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/webserver.cpp.o
 AIChatServer: CMakeFiles/AIChatServer.dir/build.make
 AIChatServer: CMakeFiles/AIChatServer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/data/AI-Chat-Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable AIChatServer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/data/AI-Chat-Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable AIChatServer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/AIChatServer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

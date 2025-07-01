@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/data/AI-Chat-Server/src/MysqlMgr.cpp" "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/MysqlMgr.cpp.o" "gcc" "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/MysqlMgr.cpp.o.d"
   "/data/AI-Chat-Server/src/chatbot.cpp" "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/chatbot.cpp.o" "gcc" "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/chatbot.cpp.o.d"
   "/data/AI-Chat-Server/src/http_conn.cpp" "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/http_conn.cpp.o" "gcc" "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/http_conn.cpp.o.d"
+  "/data/AI-Chat-Server/src/log.cpp" "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.o" "gcc" "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.o.d"
   "/data/AI-Chat-Server/src/main.cpp" "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/main.cpp.o" "gcc" "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/main.cpp.o.d"
   "/data/AI-Chat-Server/src/timer.cpp" "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/timer.cpp.o" "gcc" "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/timer.cpp.o.d"
   "/data/AI-Chat-Server/src/webserver.cpp" "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/webserver.cpp.o" "gcc" "CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/webserver.cpp.o.d"

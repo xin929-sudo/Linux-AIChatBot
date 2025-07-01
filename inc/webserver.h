@@ -28,7 +28,7 @@ private:
     bool InitSocket();
     bool Initepoll();
     bool Inittimer();
-    // bool InitLoger();
+    bool InitLoger();
     void trig_mode();
     bool AddClient();
     void deal_timer(util_timer *timer, int sockfd);
@@ -65,7 +65,7 @@ private:
     
 
 public:
-    webserver(int port,int TrigMode);
+    webserver(int port,int LOGWrite,int TrigMode);
     ~webserver();
     void start();
 };

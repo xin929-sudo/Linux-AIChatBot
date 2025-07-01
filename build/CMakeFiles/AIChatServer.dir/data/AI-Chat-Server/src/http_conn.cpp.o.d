@@ -353,4 +353,10 @@ CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/http_conn.cpp.o: \
  /usr/include/x86_64-linux-gnu/curl/easy.h \
  /usr/include/x86_64-linux-gnu/curl/multi.h \
  /usr/include/x86_64-linux-gnu/curl/curl.h \
- /usr/include/x86_64-linux-gnu/curl/urlapi.h
+ /usr/include/x86_64-linux-gnu/curl/urlapi.h \
+ /data/AI-Chat-Server/src/../inc/log.h \
+ /data/AI-Chat-Server/src/../inc/./blocking_queue.h \
+ /data/AI-Chat-Server/src/../inc/././locker.h /usr/include/c++/7/fstream \
+ /usr/include/x86_64-linux-gnu/c++/7/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/7/bits/c++io.h \
+ /usr/include/c++/7/bits/fstream.tcc

@@ -201,6 +201,30 @@ data/AI-Chat-Server/src/http_conn.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIChatServer.dir/build.make CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/http_conn.cpp.s
 .PHONY : data/AI-Chat-Server/src/http_conn.cpp.s
 
+data/AI-Chat-Server/src/log.o: data/AI-Chat-Server/src/log.cpp.o
+.PHONY : data/AI-Chat-Server/src/log.o
+
+# target to build an object file
+data/AI-Chat-Server/src/log.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIChatServer.dir/build.make CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.o
+.PHONY : data/AI-Chat-Server/src/log.cpp.o
+
+data/AI-Chat-Server/src/log.i: data/AI-Chat-Server/src/log.cpp.i
+.PHONY : data/AI-Chat-Server/src/log.i
+
+# target to preprocess a source file
+data/AI-Chat-Server/src/log.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIChatServer.dir/build.make CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.i
+.PHONY : data/AI-Chat-Server/src/log.cpp.i
+
+data/AI-Chat-Server/src/log.s: data/AI-Chat-Server/src/log.cpp.s
+.PHONY : data/AI-Chat-Server/src/log.s
+
+# target to generate assembly for a file
+data/AI-Chat-Server/src/log.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AIChatServer.dir/build.make CMakeFiles/AIChatServer.dir/data/AI-Chat-Server/src/log.cpp.s
+.PHONY : data/AI-Chat-Server/src/log.cpp.s
+
 data/AI-Chat-Server/src/main.o: data/AI-Chat-Server/src/main.cpp.o
 .PHONY : data/AI-Chat-Server/src/main.o
 
@@ -291,6 +315,9 @@ help:
 	@echo "... data/AI-Chat-Server/src/http_conn.o"
 	@echo "... data/AI-Chat-Server/src/http_conn.i"
 	@echo "... data/AI-Chat-Server/src/http_conn.s"
+	@echo "... data/AI-Chat-Server/src/log.o"
+	@echo "... data/AI-Chat-Server/src/log.i"
+	@echo "... data/AI-Chat-Server/src/log.s"
 	@echo "... data/AI-Chat-Server/src/main.o"
 	@echo "... data/AI-Chat-Server/src/main.i"
 	@echo "... data/AI-Chat-Server/src/main.s"
