@@ -22,25 +22,29 @@ bool Log::init(const char * file_name, int close_log , int log_buf_size, int spl
         pthread_create(&tid,NULL,flush_log_thread,NULL);
     }
     // 基本参数设置
-    time_t t= time(NULL);
+    m_close_log = close_log;
+    m_log_buf_size = log_buf_size;
+    m_buf = new char[m_log_buf_size];
+    m_split_lines = split_lines;
+
+    time_t t = time(NULL);
     struct tm *sys_tm = localtime(&t);
     struct tm my_tm = *sys_tm;
-    
-    const char *p = strrchr(file_name,'/'); // 查找最后一个'/'
+
+    const char *p = strrchr(file_name, '/');
     char log_full_name[256] = {0};
 
-    if(p == NULL) {
-        // 没有路径，直接在当前目录
-        snprintf(log_full_name, 255, "%d_%02d_%02d_%s", 
-                my_tm.tm_year + 1900, my_tm.tm_mon + 1, my_tm.tm_mday, file_name);
-    } else {
-        // 有路径，分离目录和文件名
-        strcpy(log_name, p + 1);                    // 提取文件名
-        strncpy(dir_name, file_name, p - file_name + 1);  // 提取目录
-        snprintf(log_full_name, 255, "%s%d_%02d_%02d_%s", 
-                dir_name, my_tm.tm_year + 1900, my_tm.tm_mon + 1, my_tm.tm_mday, log_name);
+    if (p == NULL)
+    {
+        snprintf(log_full_name, 255, "%d_%02d_%02d_%s", my_tm.tm_year + 1900, my_tm.tm_mon + 1, my_tm.tm_mday, file_name);
     }
-    
+    else
+    {
+        strcpy(log_name, p + 1);
+        strncpy(dir_name, file_name, p - file_name + 1);
+        snprintf(log_full_name, 255, "%s%d_%02d_%02d_%s", dir_name, my_tm.tm_year + 1900, my_tm.tm_mon + 1, my_tm.tm_mday, log_name);
+    }
+
     m_today = my_tm.tm_mday;
 
     m_file = fopen(log_full_name, "a");

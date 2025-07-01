@@ -39,10 +39,7 @@ port(port), m_log_write(LOGWrite),m_TrigMode(TrigMode)
         printf("Fail to create timer!");
         throw exception();
     }
-    // if (!InitSQL()){
-    //     printf("Fail to connect to SQL!");
-    //     throw exception();
-    // }
+
     if(!InitLoger()){
         printf("Fail to create Loger!");
         throw exception();
@@ -131,9 +128,9 @@ bool webserver::InitLoger(){
     // 初始化日志
     m_close_log=0;
     if (m_log_write == 1)
-        Log::get_instance()->init(".logfile/ServerLog", m_close_log, 2000, 800000, 800);
+        Log::get_instance()->init("../logfile/ServerLog", m_close_log, 2000, 800000, 800);
     else
-        Log::get_instance()->init(".logfile/ServerLog", m_close_log, 2000, 800000, 0);
+        Log::get_instance()->init("../logfile/ServerLog", m_close_log, 2000, 800000, 0);
     return true;
 }
 
