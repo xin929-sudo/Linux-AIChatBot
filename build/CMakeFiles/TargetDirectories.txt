@@ -1,3 +1,0 @@
-/data/AI-Chat-Server/build/CMakeFiles/AIChatServer.dir
-/data/AI-Chat-Server/build/CMakeFiles/edit_cache.dir
-/data/AI-Chat-Server/build/CMakeFiles/rebuild_cache.dir
